@@ -1,5 +1,6 @@
-.main {
-  display: flex;
-  flex-direction: column;
+body {
+  max-width: 650px;
+  margin: 30px auto;
+  background-color: #EEEEEE;
   text-align: center;
 }
