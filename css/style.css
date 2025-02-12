@@ -4,3 +4,16 @@ body {
   background-color: #EEEEEE;
   text-align: center;
 }
+
+.nav a {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+main {
+  margin-top: 2rem;
+}
+
+.page {
+  text-align: left;
+}
