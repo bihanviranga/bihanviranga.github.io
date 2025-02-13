@@ -2,7 +2,15 @@ body {
   max-width: 650px;
   margin: 30px auto;
   background-color: #EEEEEE;
+  line-height: 1.5rem;
+}
+
+header {
   text-align: center;
+}
+
+main {
+  margin-top: 2rem;
 }
 
 .nav a {
@@ -10,10 +18,24 @@ body {
   margin-right: 2rem;
 }
 
-main {
-  margin-top: 2rem;
-}
 
 .page {
   text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.section-blog-posts {
+  margin-top: 4rem;
+}
+
+.wip {
+  background-color: #ff9f9f;
+  padding: 8px 0;
+  border-radius: 10px;
+  border: 1px solid black;
+  width: 100%;
+  text-align: center;
 }
