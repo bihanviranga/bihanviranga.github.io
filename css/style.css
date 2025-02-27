@@ -13,11 +13,15 @@ main {
   margin-top: 2rem;
 }
 
+footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
 .nav a {
   margin-left: 2rem;
   margin-right: 2rem;
 }
-
 
 .page {
   text-align: left;
@@ -27,8 +31,12 @@ main {
   text-align: center;
 }
 
+.section-pages {
+  margin-top: 2rem;
+}
+
 .section-blog-posts {
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .wip {
