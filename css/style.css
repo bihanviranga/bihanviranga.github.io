@@ -18,6 +18,10 @@ footer {
   margin-top: 2rem;
 }
 
+hr {
+  border: 1px solid;
+}
+
 .nav a {
   margin-left: 2rem;
   margin-right: 2rem;
@@ -46,4 +50,11 @@ footer {
   border: 1px solid black;
   width: 100%;
   text-align: center;
+}
+
+.button-container {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
 }
