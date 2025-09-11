@@ -43,14 +43,19 @@ find "$SRC" -name "*.html" ! -path "$SRC/common/*" | while read -r file; do
         [[ -n "$key" ]] && meta["$key"]="$value"
     done <<< "$meta_block"
 
+    # compute depth
+    depth=$(echo "$relpath" | awk -F/ '{print NF-1}')
+    base=""
+    for ((i=0;i<depth;i++)); do
+        base="../$base"
+    done
+    meta["base"]="${base:-./}"
+
     # phase 1: replace partials {{name}} with src/common/name.html
-    while [[ "$content" =~ \{\{([a-zA-Z0-9_-]+)\}\} ]]; do
-        name="${BASH_REMATCH[1]}"
+    for name in $(grep -o '{{[a-zA-Z0-9_-]\+}}' <<< "$content" | sed 's/[{}]//g'); do
         if [[ -f "$SRC/common/$name.html" ]]; then
             part=$(<"$SRC/common/$name.html")
             content="${content//\{\{$name\}\}/$part}"
-        else
-            break
         fi
     done
 
@@ -58,20 +63,13 @@ find "$SRC" -name "*.html" ! -path "$SRC/common/*" | while read -r file; do
     final="${template_content//\{\{slot\}\}/$content}"
 
     # phase 3: replace the metadata placeholders such as {{title}} and {{description}}
-    while [[ "$final" =~ \{\{([a-zA-Z0-9_-]+)(\|([^}]+))?\}\} ]]; do
-        key="${BASH_REMATCH[1]}"
-        default="${BASH_REMATCH[3]}"
-        if [[ -n "${meta[$key]}" ]]; then
-            replacement="${meta[$key]}"
-        elif [[ -n "$default" ]]; then
-            replacement="$default"
-        else
-            replacement="{{${key}}}" # leave as-is if no default
-        fi
-        final="${final//\{\{$key${BASH_REMATCH[2]}\}\}/$replacement}"
+    for key in "${!meta[@]}"; do
+        final="${final//\{\{$key\}\}/${meta[$key]}}"
     done
 
 
     echo "$final" > "$out"
     echo "[+] Built $out"
 done
+
+echo "[+] Build process complete"
