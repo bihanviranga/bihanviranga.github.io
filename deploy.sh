@@ -1,7 +1,9 @@
 #!/opt/homebrew/bin/bash
 set -e
 
-DIST="dist"
+echo "[*] Deployment started"
+
+DIST="docs"
 
 # stage
 git add "$DIST"
@@ -14,3 +16,5 @@ git commit -m "Deployment commit $timestamp"
 
 # push
 git push origin HEAD
+
+echo "[+] Deployment finished"

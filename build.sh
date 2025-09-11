@@ -4,7 +4,7 @@ set -e
 echo "[*] Starting build process"
 
 SRC="src"
-DIST="dist"
+DIST="docs"
 
 # clean HTML files from dist (but keep existing assets)
 find "$DIST" -type f -name "*.html" -delete
