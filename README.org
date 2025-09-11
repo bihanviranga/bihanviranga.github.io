@@ -1,0 +1,27 @@
+* bihan.lk
+This is a static site served via github pages. I use a bash script to inject pieces of HTML into other HTML files, so it is easier to maintain.
+
+** Development
+The source files are under the /src directory. All HTML files in this directory would be processed by the build script.
+
+The build script would look for placeholders like {{header}} and {{footer}}, and replace the placeholder with the content of /src/common/header.html or footer.html.
+
+The page that is build like this, would then be injected into the /src/common/template.html file, replacing the {{slot}} placeholder.
+
+There's also some metadata action going on. Each file can describe some metadata which will be injected into the template. This currently includes title and description, but I might add more later.
+
+The base path is calculated using the {{base}} placeholder. To specify paths, just use {{base}}css/style.css, and so on. The build script will resolve these paths correctly.
+
+Once the injection is done and the html page is built, it will be placed in the /docs directory. This directory is served using github pages.
+
+All assets (images, css stylesheets) are directly stored in the /docs directory.
+
+*** Development commands
+#+begin_src bash
+# to build the HTML files:
+make build
+# to build in development mode (basically re-builds every 5 seconds):
+make dev
+# to git-add the /docs directory and push to origin HEAD:
+make deploy
+#+end_src
